@@ -8,20 +8,12 @@ const fs = require('fs')
 const express = require('express');
 
 const { Pool } = require('pg');
-var pool
-if(process.env.DATABASE_URL){
-  pool = new Pool({
-    connectionString: process.env.DATABASE_URL
-  });
-}else{
-  pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }  
-  });
-}
-
+const pool = new Pool({
+connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 const app = express(); 
 app.use(express.json());
